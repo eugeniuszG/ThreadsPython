@@ -1,0 +1,37 @@
+Projekt 1
+
+Realizowane obliczanie całki oznaczonej f(x) = 3*x^3 + cos(7*x) - ln(2*x) na na przedziale [1, 40].
+Projekt napisany w języku Python
+
+1. W pliku z nazwą "1_ThreadsUnsynchronized" były użyty wątki bez synchronizacji. Wynik działania niepoprawny.
+	dla dx=1-e6 czas wykonania powyżej 20 sekund. Strata czasu.
+	
+2. W pliku z nazwą "2_ThreadsSynchronized" były użyty wątki z synchronizacją za pomoca threading.Lock().
+	dx = 1-e6  czas działania od 8.2 - 9 sekund
+	
+3. W pliku z nazwą "3_ThreadsSynchronized(Local sum in Threads)" były użyty wątki z synchronizacją 
+	byla użyta lokalna suma, ktora jest inicjalizowana w srodku wątku.
+	dx = 1-e6 czas działania duzo się nie zminił od 8.2 - 8.7 sekund
+	
+4. W 4 versji uzyłem zalecanej do wykorzystania w języku Python kolejki. Ten sposób najlepszy, chociaż 
+	dx = 1-e6 dzala na poł sekundy dłuzej. Ale ocobiście polecam, w prz
+	
+Probowałem zmieniać dx do 1-e7, najlepszy wynik uzyskałem z wersji programu 2:
+ 
+2_ThreadsSynchronized.py                                                                                                                               2_
+Wynik:  122873794043901.44
+Czas wykonania:  83.9259729385376
+
+3_ThreadsSynchronized(Local sum in Threads).py                                                                                                   /3
+Wynik:  122873794043901.44
+Czas wykonania:  88.08963418006897
+
+4_ThreadsQueue(Local sum in Threads).py
+Wynik:  122873794043901.44
+Czas wykonania:  88.92148041725159
+
+P.S. Wyniki wersji iteracyjnej:
+0_NoThreads.py
+Wynik:  122873794043901.44
+Czas obliczenia:  65.21843957901001 
+
